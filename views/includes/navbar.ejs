@@ -1,105 +1,61 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
 <style>
-/* General Navbar Styling */
-nav.navbar {
-  position: relative;
-  margin-top: 20px;
-  padding: 10px 15px;
-}
-
-#search {
-  width: 100%;
-  max-width: 300px;
+#search{
+  width:300px;
   border-radius: 25px;
-  margin: 5px 0;
 }
-
-.btn-search {
-  color: white;
-  background-color: #fe424d;
+.btn-search{
+  color:white;
+  background-color:#fe424d;
+  width:100px;
   border-radius: 25px;
-  border: none;
-  padding: 6px 16px;
-  margin-left: 10px;
-}
-
-.middle {
-  display: flex;
-  justify-content: center;
-  margin: 10px 0;
-}
-
-/* Stack buttons and center everything on small screens */
-@media (max-width: 768px) {
-  .navbar-collapse {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .navbar-nav {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 10px;
-  }
-
-  .navbar-nav a {
-    padding: 6px 12px;
-    font-size: 0.95rem;
-  }
-
-  .middle form {
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-  }
-
-  .btn-search,
-  #search {
-    width: 90%;
-    max-width: 300px;
-  }
+  border:none
 }
 </style>
-
-<nav class="navbar navbar-expand-md bg-light border-bottom shadow-sm">
+<nav class="navbar navbar-expand-md bg-light border-bottom shadow-sm sticky-top py-2">
   <div class="container-fluid">
-    <!-- Brand -->
+    <!-- Logo -->
     <a class="navbar-brand d-flex align-items-center gap-2 text-primary fw-bold fs-5" href="/listings">
-      <i class="fa-solid fa-compass"></i>
+      <i class="fa-solid fa-compass"></i> 
     </a>
 
-    <!-- Toggle -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-      data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
-      aria-expanded="false" aria-label="Toggle navigation">
+    <!-- Toggler button -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <!-- Collapsible Section -->
-    <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
+    <!-- Collapsible links -->
+    <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
+      <!-- Left Nav -->
+      <div class="navbar-nav">
       
-      <!-- Search Row -->
-      <% if(currentuser){ %>
-      <div class="middle">
-        <form class="d-flex flex-wrap justify-content-center">
-          <input class="form-control" id="search" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn-search mt-2 mt-md-0" type="submit">Search</button>
-        </form>
+        <a class="nav-link text-dark fw-medium px-3" href="/listings">Explore</a>
+        
       </div>
-      <% } %>
-
-      <!-- Nav Links Row -->
-      <div class="navbar-nav text-center">
-        <a class="nav-link fw-medium px-3" href="/listings">Explore</a>
-        <a class="nav-link fw-medium px-3" href="/listings/new">Airbnb Your Home</a>
-        <% if (!currentuser) { %>
-          <a class="nav-link fw-medium px-3" href="/signup"><i class="fa fa-user-plus me-1"></i>Sign Up</a>
-          <a class="nav-link fw-medium px-3" href="/login"><i class="fa fa-sign-in-alt me-1"></i>Login</a>
-        <% } else { %>
-          <a class="nav-link fw-medium px-3" href="/logout"><i class="fa-solid fa-right-from-bracket me-1"></i>Logout</a>
-        <% } %>
+<% if(currentuser){%>
+      <div class="middle">
+        <form class="d-flex" role="search">
+      <input class="form-control me-2" id="search"    type="search" placeholder="Search" aria-label="Search"/>
+      <button class="btn-search" type="submit">Search</button>
+    </form>
+      </div>
+      <%}%>
+      <!-- Right Nav -->
+      <div class="navbar-nav">
+        <a class="nav-link text-dark fw-medium px-3 " href="/listings/new">Airbnb Your Home</a>
+        <% if(!currentuser){%>
+     <a class="nav-link text-dark fw-medium px-3" href="/signup"><i class="fa fa-user-plus me-1"></i>Sign Up</a>
+        <a class="nav-link text-dark fw-medium px-3" href="/login"><i class="fa fa-sign-in-alt me-1"></i>Login</a>
+        <%}%>
+   <%if(currentuser) {%>
+ <a class="nav-link text-dark fw-medium px-3" href="/logout">
+  <i class="fa-solid fa-right-from-bracket me-1"></i>Logout
+</a>
+  <% }%>
+       
       </div>
     </div>
   </div>
