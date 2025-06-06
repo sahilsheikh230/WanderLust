@@ -7,7 +7,7 @@ const reviewschema = new mongoose.Schema({  // use `new mongoose.Schema(...)`
   },
   rating: {
     type: Number,
-    min: 1,
+    min: 0,
     max: 5,  // assumed 5, your original had min:1, max:1 which doesn't make sense
   },
   createdAt: {

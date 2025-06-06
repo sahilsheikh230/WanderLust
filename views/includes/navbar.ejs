@@ -3,18 +3,71 @@
 
 
 <style>
-#search{
-  width:300px;
+#search {
+  width: 300px;
   border-radius: 25px;
 }
-.btn-search{
-  color:white;
-  background-color:#fe424d;
-  width:100px;
+
+.btn-search {
+  color: white;
+  background-color: #fe424d;
+  width: 100px;
   border-radius: 25px;
-  border:none
+  border: none;
+}
+
+/* ----------- Responsive Media Queries ----------- */
+
+/* On small screens (≤ 768px), adjust search and nav spacing */
+@media (max-width: 768px) {
+  #search {
+    width: 180px;
+    margin-bottom: 10px;
+  }
+
+  .btn-search {
+    width: 80px;
+  }
+
+  .middle {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+  .navbar-nav {
+    text-align: center;
+    width: 100%;
+  }
+
+  .navbar-nav a {
+    padding: 10px 0;
+  }
+}
+
+/* On very small screens (≤ 576px), further compress elements */
+@media (max-width: 576px) {
+  .navbar-brand {
+    font-size: 1rem;
+  }
+
+  #search {
+    width: 100%;
+  }
+
+  .btn-search {
+    width: 100%;
+    margin-top: 5px;
+  }
+
+  .middle form {
+    flex-direction: column;
+    align-items: stretch;
+  }
 }
 </style>
+
 <nav class="navbar navbar-expand-md bg-light border-bottom shadow-sm sticky-top py-2">
   <div class="container-fluid">
     <!-- Logo -->
