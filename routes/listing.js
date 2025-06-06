@@ -31,13 +31,14 @@ router.route("/")
 
 // creating new listing
 router.get("/new",isloggedin, listingController.newlisting);
+router.get("/:id/edit" ,isloggedin,isowner, validatelisting,wrapasync(listingController.getedit));
 router.route("/:id")
   .get(wrapasync(listingController.show))
   .put(isloggedin, isowner,upload.single('Listing[image]'), validatelisting, wrapasync(listingController.update))
   .delete(isloggedin, isowner, wrapasync(listingController.destroy));
 
 // EDITING ROUTE
-router.get("/:id/edit" ,isloggedin,isowner, validatelisting,wrapasync(listingController.getedit));
+
 
 
 module.exports=router;
