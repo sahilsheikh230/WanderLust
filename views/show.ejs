@@ -1,0 +1,116 @@
+<% layout("/layouts/boilerplate.ejs")-%>
+
+<body class="bg-light">
+ 
+  <style>
+  .filters {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    padding: 1rem;
+    border-bottom: 1px solid #e2e2e2;
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .filters::-webkit-scrollbar {
+    display: none; /* Chrome */
+  }
+
+  .filters a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 777px;
+    background-color: #f7f7f7;
+    color: #333;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .filters a:hover {
+    background-color: #000;
+    color: #fff;
+  }
+  .tax{
+    padding:5px;
+    width: 250px;
+    border: 1px solid #e2e2e2;
+    border-radius: 25px;
+  }
+  .taxes{
+    display: none;
+  }
+</style>
+
+<div id="filters">
+ 
+<div class="filters">
+  <a href="#"><i class="fa-solid fa-fire"></i> Trending</a>
+  <a href="#"><i class="fa-solid fa-house-chimney"></i> Cabins</a>
+  <a href="#"><i class="fa-solid fa-water"></i> Lakefront</a>
+  <a href="#"><i class="fa-solid fa-cube"></i> Tiny Homes</a>
+  <a href="#"><i class="fa-solid fa-campground"></i> Camping</a>
+  <a href="#"><i class="fa-solid fa-mountain-sun"></i> Amazing Views</a>
+  <a href="#"><i class="fa-solid fa-umbrella-beach"></i> Beachfront</a>
+  <a href="#"><i class="fa-solid fa-tree"></i> Countryside</a>
+  <a href="#"><i class="fa-solid fa-gem"></i> Luxury</a>
+  <a href="#"><i class="fa-solid fa-star"></i> New</a>
+
+
+
+</div>
+<div class="tax">
+<div class="form-check-reverse form-switch">
+  <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
+  <label class="form-check-label" for="switchCheckDefault">Display total after taxes</label>
+  </div>
+</div>
+</div>
+
+
+
+  <div class="container py-5">
+    
+
+    <div class="row g-4">
+      <% for (listing of listings) { %>
+        <div class="col-sm-6 col-md-4 col-lg-3">
+          <a href="/listings/<%= listing._id %>" class="text-decoration-none text-dark">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+              <div class="overflow-hidden rounded-top-4">
+                <img src="<%= listing.image.url %>" alt="listing_image"
+                     class="img-fluid card-img-top object-fit-cover"
+                     style="height: 230px; transition: transform 0.4s ease;">
+              </div>
+              <div class="card-body">
+                <h6 class="fw-semibold mb-1 text-truncate title"><%= listing.title %></h6>
+                <p class="text-muted mb-0">&#8377;<%= listing.price %> / night
+                <i class="taxes">&nbsp;18% GST</i>
+                </p>
+              </div>
+            </div>
+          </a>
+        </div>
+      <% } %>
+    </div>
+  </div>
+
+</body>
+<script>
+  let price=document.querySelector("#switchCheckDefault");
+  price.addEventListener("click",()=>{
+let tax=document.getElementsByClassName("taxes");
+for(j of tax){
+  if(j.style.display!="inline")
+  j.style.display="inline";
+
+else {
+  j.style.display="none"
+}
+
+}
+  });
+</script>

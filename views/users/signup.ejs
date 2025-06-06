@@ -1,0 +1,64 @@
+<% layout("/layouts/boilerplate.ejs")-%>
+<form action="/signup" method="post" class="needs-validation" novalidate>
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-5 shadow p-4 rounded bg-light">
+
+        <h3 class="text-center mb-4">Create Account</h3>
+
+        <!-- Email -->
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            name="email"
+            placeholder="Enter email"
+            required
+          >
+          <div class="invalid-feedback">Email is required</div>
+        </div>
+
+        <!-- Username -->
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input
+            type="text"
+            class="form-control"
+            id="username"
+            name="username"
+            placeholder="Choose a username"
+            required
+          >
+          <div class="invalid-feedback">Username is required</div>
+        </div>
+
+        <!-- Password -->
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            name="password"
+            placeholder="Enter password"
+            required
+          >
+          <div class="invalid-feedback">Password is required</div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="d-grid">
+          <button type="submit" class="btn btn-primary">Sign Up</button>
+        </div>
+
+        <!-- Extra Info -->
+        <p class="text-center mt-3 text-muted" style="font-size: 0.9rem;">
+          Already have an account? <a href="/login">Log in</a>
+        </p>
+
+      </div>
+    </div>
+  </div>
+</form>
