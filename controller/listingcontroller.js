@@ -68,16 +68,36 @@ module.exports.getedit=async (req, res) => {
   }
   res.render("edit.ejs", { listing });
 };
-module.exports.update=async (req, res) => {
+module.exports.update = async (req, res) => {
   let { id } = req.params;
-  let url=req.file.path;
-  let filename=req.file.filename;
-  let { title, description, image, price, location, country } = req.body.Listing;
-  
- await Listing.findByIdAndUpdate(id,{ title: title, description: description, image: { url: url,filename:filename }, price: price, location: location, country: country });
-  req.flash("success","Listing Updated");
+  let { title, description, price, location, country } = req.body.Listing;
+
+  // Find current listing first
+  let listing = await Listing.findById(id);
+
+  // Prepare updated data
+  const updatedData = {
+    title,
+    description,
+    price,
+    location,
+    country,
+    image: listing.image  // fallback to old image
+  };
+
+  // If a new image is uploaded, update it
+  if (req.file) {
+    updatedData.image = {
+      url: req.file.path,
+      filename: req.file.filename
+    };
+  }
+
+  await Listing.findByIdAndUpdate(id, updatedData);
+  req.flash("success", "Listing Updated");
   res.redirect("/listings");
 };
+
 module.exports.destroy=async (req, res) => {
   let { id } = req.params;
   await Listing.findByIdAndDelete(id);
