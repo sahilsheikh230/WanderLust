@@ -57,7 +57,7 @@ const sessionoptions={
   store:store,
   secret:process.env.SECRET,
   resave:false,
-  saveUninitialised:true,
+  saveUninitialized:true,
   cookie:{
     expires:Date.now()+7*24*60*60*1000,
     maxAge:7*24*60*60*1000,
@@ -86,23 +86,17 @@ app.use((req,res,next)=>{
 
 
 
-app.get("/demouser",async(req,res)=>{
 
-})
 
 app.use("/listings", listingsrouter);
 app.use("/listings/:id/reviews",reviewsrouter);
-app.use("",userrouter);
+app.use("/",userrouter);
 
 app.listen(port, () => {
   console.log("Server is listening on port", port);
 });
 // reviews route
 
-
-app.all("*", (req, res, next) => {
-  next(new expresserror(404, "page not found"));
-});
 
 app.use((err, req, res, next) => {
   let { status = 500, message = "something went wrong" } = err;
