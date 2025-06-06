@@ -33,6 +33,7 @@ const atlasUrl=process.env.ATLAS_URL;
 async function main() {
   await mongoose.connect(atlasUrl);
 }
+
 main().then((res) => {
   console.log("connected to db");
 })

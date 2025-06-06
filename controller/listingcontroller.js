@@ -69,32 +69,15 @@ module.exports.getedit=async (req, res) => {
   res.render("edit.ejs", { listing });
 };
 module.exports.update = async (req, res) => {
-  let { id } = req.params;
-  let { title, description, price, location, country } = req.body.Listing;
-
-  // Find current listing first
-  let listing = await Listing.findById(id);
-
-  // Prepare updated data
-  const updatedData = {
-    title,
-    description,
-    price,
-    location,
-    country,
-    image: listing.image  // fallback to old image
-  };
-
-  // If a new image is uploaded, update it
-  if (req.file) {
-    updatedData.image = {
-      url: req.file.path,
-      filename: req.file.filename
-    };
+  let {id}=req.params;
+  let listing=await Listing.findByIdAndUpdate(id,{...req.body.Listing},{new:true});
+  if(typeof req.file!=="undefined"){
+    let url=req.file.path;
+    let filename=req.file.filename;
+    listing.image={url,filename};
+    await listing.save();
   }
-
-  await Listing.findByIdAndUpdate(id, updatedData);
-  req.flash("success", "Listing Updated");
+  req.flash("success","Edited the Listing");
   res.redirect("/listings");
 };
 
